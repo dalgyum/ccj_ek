@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="문의겸 & 김민정의 모바일 청첩장에 초대합니다.">
+  <title>문의겸 & 김민정 모바일 청첩장</title>
+
+  <!-- Open Graph / SNS & KakaoTalk Share Preview Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="문의겸 ♥ 김민정 모바일 청첩장">
+  <meta property="og:description" content="2026년 11월 21일 토요일 낮 12:00 예닮교회 3층 예배당">
+  <meta property="og:image" content="https://snazzy-centaur-e1acfd.netlify.app/images/hero.jpg">
+  <meta property="og:url" content="https://snazzy-centaur-e1acfd.netlify.app/">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="문의겸 ♥ 김민정 모바일 청첩장">
+  <meta name="twitter:description" content="2026년 11월 21일 토요일 낮 12:00 예닮교회 3층 예배당">
+  <meta name="twitter:image" content="https://snazzy-centaur-e1acfd.netlify.app/images/hero.jpg">
+
+  <!-- Google Fonts: Cormorant Garamond, Noto Serif KR, Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome for clean iconography -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- KakaoTalk JavaScript SDK -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- 0. High-End Luxury Invitation Intro Overlay -->
+  <div class="envelope-overlay" id="envelopeOverlay">
+    <div class="intro-card-container">
+      <div class="intro-card-inner">
+        <div class="intro-badge">YOU ARE INVITED</div>
+        <div class="intro-divider-line"></div>
+        <h1 class="intro-names">문의겸 <span class="amp">&amp;</span> 김민정</h1>
+        <p class="intro-date">2026. 11. 21. SAT PM 12:00</p>
+        <p class="intro-location">예닮교회 3층 예배당</p>
+
+        <!-- Bible Verse Box -->
+        <div class="intro-bible-box">
+          <p class="intro-bible-text">
+            만일 우리가 서로 사랑하면<br>
+            하나님이 우리 안에 거하시고<br>
+            그의 사랑이 우리 안에<br>
+            온전히 이루어지느니라
+          </p>
+          <span class="intro-bible-ref">요한1서 4:12</span>
+        </div>
+
+        <div class="intro-seal-wrapper" id="envelopeSeal" onclick="openInvitationOverlay()">
+          <button class="intro-seal-btn" onclick="openInvitationOverlay()" aria-label="초대장 열기">
+            <span class="seal-text-eng">OPEN INVITATION</span>
+            <span class="seal-text-kor">초대장 열기</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Music & Petals Player Header Bar -->
+  <div class="top-nav-bar">
+    <div class="top-nav-title">WEDDING INVITATION</div>
+    <div class="top-nav-actions">
+      <button id="petalsToggleBtn" class="bgm-btn active" aria-label="꽃잎 애니메이션 On/Off">
+        <i class="fa-solid fa-leaf"></i>
+        <span class="petals-status">꽃잎 ON</span>
+      </button>
+      <button id="bgmToggleBtn" class="bgm-btn" aria-label="배경음악 재생/일시정지">
+        <i class="fa-solid fa-music"></i>
+        <span class="bgm-status">BGM OFF</span>
+      </button>
+    </div>
+  </div>
+  <audio id="bgmAudio" loop preload="auto" playsinline src="audio/bgm.m4a"></audio>
+
+  <!-- App Main Container -->
+  <div class="invitation-container">
+
+    <!-- 1. Hero Section (메인 커버 사진 강조) -->
+    <section class="hero-section">
+      <div class="hero-subtitle">WEDDING DAY</div>
+      <h1 class="hero-names">문의겸 &amp; 김민정</h1>
+      <p class="hero-date">2026. 11. 21. SAT PM 12:00</p>
+      <p class="hero-location">예닮교회 3층 예배당</p>
+
+      <!-- Main Cover Photo Container -->
+      <div class="hero-image-wrapper">
+        <!-- 💡 메인 대표 사진 -->
+        <img src="./images/hero.jpg" alt="문의겸과 김민정의 메인 웨딩 사진" class="hero-image" id="mainHeroImage" fetchpriority="high" decoding="async">
+        <div class="hero-image-overlay"></div>
+      </div>
+
+      <div class="scroll-down-hint">
+        <span>INVITATION</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- 2. Invitation & Greeting Section (초대의 글) -->
+    <section class="section greeting-section">
+      <div class="section-tag">INVITATION</div>
+      <h2 class="section-title">소중한 분들을 초대합니다</h2>
+
+      <div class="greeting-content">
+        <p>서로의 삶에 스며들어<br>하나가 되려 합니다.</p>
+        <p>함께 걸어온 길을 바탕으로<br>더 따뜻하고 깊은 사랑을 지어가겠습니다.</p>
+        <p>저희 두 사람이 만드는 새로운 출발의 자리에<br>귀한 걸음으로 축복해 주시면<br>큰 기쁨으로 간직하겠습니다.</p>
+      </div>
+
+      <div class="divider">
+        <span class="divider-icon">♥</span>
+      </div>
+
+      <!-- Family Information Grid -->
+      <div class="family-info-card">
+        <div class="family-row">
+          <div class="parents"><span class="name">문만표 · 김인희</span>의 장남</div>
+          <div class="person-name">의겸</div>
+        </div>
+        <div class="family-row">
+          <div class="parents"><span class="name">김광기 · 김종순</span>의 삼녀</div>
+          <div class="person-name">민정</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2.5 Couple Profile & Vow Section (신랑 & 신부 이야기) -->
+    <section class="section profile-vow-section">
+      <div class="section-tag">COUPLE</div>
+      <h2 class="section-title">신랑 &amp; 신부 이야기</h2>
+
+      <div class="profile-cards-grid">
+        <div class="profile-card groom">
+          <div class="profile-img-box">
+            <img src="./images/groom.jpg" alt="신랑 문의겸" loading="lazy" decoding="async">
+          </div>
+          <div class="profile-role">GROOM</div>
+          <h3 class="profile-name">문의겸</h3>
+          <p class="profile-quote">"언제나 곁에서 따뜻하고 든든한 버팀목이 되어주는 사람"</p>
+        </div>
+
+        <div class="profile-card bride">
+          <div class="profile-img-box">
+            <img src="./images/bride.jpg" alt="신부 김민정" loading="lazy" decoding="async">
+          </div>
+          <div class="profile-role">BRIDE</div>
+          <h3 class="profile-name">김민정</h3>
+          <p class="profile-quote">"함께하는 모든 날들을 밝은 미소로 채워주는 사랑스러운 사람"</p>
+        </div>
+      </div>
+
+      <div class="vow-card">
+        <div class="vow-title"><i class="fa-solid fa-hand-holding-heart"></i> 우리의 약속</div>
+        <div class="vow-text">
+          <span class="vow-line">서로 다른 두 사람이 만나 하나의 결실을 맺습니다.</span>
+          <span class="vow-line">기쁠 때 함께 웃고, 힘들 때 서로에게 위로가 되며,</span>
+          <span class="vow-line">마주 보며 함께 걸어가는 따뜻한 가정을 이루겠습니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Calendar & D-Day Section (디데이 카운트다운) -->
+    <section class="section calendar-section">
+      <div class="section-tag">DATE &amp; TIME</div>
+      <h2 class="section-title">2026년 11월 21일</h2>
+      <p class="calendar-subtitle">토요일 낮 12시 00분</p>
+
+      <!-- Monthly Calendar Grid -->
+      <div class="calendar-card">
+        <div class="calendar-header">11 NOVEMBER</div>
+        <table class="calendar-table">
+          <thead>
+            <tr>
+              <th class="sun">일</th>
+              <th>월</th>
+              <th>화</th>
+              <th>수</th>
+              <th>목</th>
+              <th>금</th>
+              <th class="sat">토</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sun">1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+              <td>6</td>
+              <td class="sat">7</td>
+            </tr>
+            <tr>
+              <td class="sun">8</td>
+              <td>9</td>
+              <td>10</td>
+              <td>11</td>
+              <td>12</td>
+              <td>13</td>
+              <td class="sat">14</td>
+            </tr>
+            <tr>
+              <td class="sun">15</td>
+              <td>16</td>
+              <td>17</td>
+              <td>18</td>
+              <td>19</td>
+              <td>20</td>
+              <td class="sat wedding-day">21</td>
+            </tr>
+            <tr>
+              <td class="sun">22</td>
+              <td>23</td>
+              <td>24</td>
+              <td>25</td>
+              <td>26</td>
+              <td>27</td>
+              <td class="sat">28</td>
+            </tr>
+            <tr>
+              <td class="sun">29</td>
+              <td>30</td>
+              <td class="muted">1</td>
+              <td class="muted">2</td>
+              <td class="muted">3</td>
+              <td class="muted">4</td>
+              <td class="sat muted">5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Live D-Day Counter -->
+      <div class="dday-card">
+        <div class="dday-title">의겸 ♥ 민정의 결혼식이</div>
+        <div class="dday-timer" id="ddayTimer">
+          <div class="time-box"><span id="ddayDays">00</span><label>DAYS</label></div>
+          <span class="colon">:</span>
+          <div class="time-box"><span id="ddayHours">00</span><label>HOURS</label></div>
+          <span class="colon">:</span>
+          <div class="time-box"><span id="ddayMinutes">00</span><label>MINS</label></div>
+          <span class="colon">:</span>
+          <div class="time-box"><span id="ddaySeconds">00</span><label>SECS</label></div>
+        </div>
+        <div class="dday-footer">남았습니다</div>
+      </div>
+    </section>
+
+    <!-- 4. Highlighted Gallery Section (웨딩 갤러리 강조) -->
+    <section class="section gallery-section" id="gallery">
+      <div class="section-tag">GALLERY</div>
+      <h2 class="section-title">우리의 순간들</h2>
+      <p class="gallery-subtext">사진을 터치하면 크게 보실 수 있습니다</p>
+
+      <!-- View Switcher Tabs -->
+      <div class="gallery-toggle">
+        <button class="toggle-btn active" id="viewGridBtn">
+          <i class="fa-solid fa-grip"></i> 그리드 뷰
+        </button>
+        <button class="toggle-btn" id="viewSlideBtn">
+          <i class="fa-solid fa-sliders"></i> 슬라이드 뷰
+        </button>
+      </div>
+
+      <!-- Gallery Grid View Container -->
+      <div class="gallery-grid" id="galleryGrid"></div>
+
+      <!-- Gallery Slide Carousel Container -->
+      <div class="gallery-slider-wrapper hidden" id="gallerySliderWrapper">
+        <div class="gallery-slider-track" id="sliderTrack"></div>
+        <button class="slider-arrow prev" id="sliderPrevBtn" aria-label="이전 사진"><i
+            class="fa-solid fa-chevron-left"></i></button>
+        <button class="slider-arrow next" id="sliderNextBtn" aria-label="다음 사진"><i
+            class="fa-solid fa-chevron-right"></i></button>
+        <div class="slider-dots" id="sliderDots"></div>
+      </div>
+
+    </section>
+
+    <!-- 5. Location Section (오시는 길) -->
+    <section class="section location-section" id="location">
+      <div class="section-tag">LOCATION</div>
+      <h2 class="section-title">오시는 길</h2>
+
+      <div class="venue-info-card">
+        <h3 class="venue-name">예닮교회 3층 예배당</h3>
+        <p class="venue-address" id="venueAddress">서울특별시 성북구 동소문로 47-23</p>
+        <p class="venue-tel">TEL. 02-926-0691</p>
+
+        <button class="btn btn-outline copy-address-btn" id="copyAddressBtn">
+          <i class="fa-regular fa-copy"></i> 주소 복사하기
+        </button>
+      </div>
+
+      <!-- Map Visual Representation -->
+      <a href="https://map.kakao.com/link/search/서울특별시 성북구 동소문로 47-23" target="_blank" rel="noopener noreferrer"
+        class="map-container-link" aria-label="카카오맵에서 예닮교회 위치 보기">
+        <div class="map-container">
+          <img src="./images/map.png" alt="예닮교회 위치 지도 (한성대입구역 7번 출구 동소문로)" class="map-img-preview" loading="lazy" decoding="async">
+          <div class="map-touch-overlay">
+            <div class="map-touch-hint">
+              <i class="fa-solid fa-hand-pointer"></i> 지도를 터치하면 카카오맵 앱으로 이동합니다
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Navigation App Shortcut Buttons -->
+      <div class="nav-apps-grid">
+        <a href="https://map.kakao.com/link/search/서울특별시 성북구 동소문로 47-23" target="_blank" rel="noopener noreferrer"
+          class="nav-app-btn kakao">
+          <i class="fa-solid fa-map"></i> 카카오맵
+        </a>
+        <a href="https://map.naver.com/v5/search/서울특별시 성북구 동소문로 47-23" target="_blank" rel="noopener noreferrer"
+          class="nav-app-btn naver">
+          <i class="fa-solid fa-compass"></i> 네이버지도
+        </a>
+        <a href="https://tmap.co.kr/tmap2/mobile/route.jsp?name=예닮교회" target="_blank" rel="noopener noreferrer"
+          class="nav-app-btn tmap">
+          <i class="fa-solid fa-location-arrow"></i> 티맵
+        </a>
+      </div>
+
+      <!-- Transport Details Tabs -->
+      <div class="transport-card">
+        <div class="transport-item">
+          <div class="transport-header"><i class="fa-solid fa-train-subway"></i> 지하철 이용 시</div>
+          <div class="transport-desc">4호선 한성대입구역 7번 출구 (도보 약 3분 거리)</div>
+        </div>
+        <div class="transport-item">
+          <div class="transport-header"><i class="fa-solid fa-bus"></i> 버스 이용 시</div>
+          <div class="transport-desc">삼선교·성북문화원·한성대입구역 하차 (간선 100, 102, 104, 106, 140, 143, 150, 160)</div>
+        </div>
+        <div class="transport-item">
+          <div class="transport-header"><i class="fa-solid fa-car"></i> 자가용 &amp; 주차 안내</div>
+          <div class="transport-desc">네비게이션 '예닮교회' 검색 / 교회 내 주차장 및 안내요원의 안내를 받아 주차 바랍니다.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Account Funds Section (마음 전하실 곳) -->
+    <section class="section account-section" id="account">
+      <div class="section-tag">ACCOUNT</div>
+      <h2 class="section-title">마음 전하실 곳</h2>
+      <p class="account-subtitle">참석이 어려우신 분들을 위해<br>따뜻한 마음을 전할 수 있는 계좌를 안내해 드립니다.</p>
+
+      <!-- Accordion: Groom Side -->
+      <div class="accordion-item">
+        <button class="accordion-header" id="groomAccountToggle">
+          <span>신랑측 계좌번호 보기</span>
+          <i class="fa-solid fa-chevron-down accordion-icon"></i>
+        </button>
+        <div class="accordion-content" id="groomAccountContent"></div>
+      </div>
+
+      <!-- Accordion: Bride Side -->
+      <div class="accordion-item">
+        <button class="accordion-header" id="brideAccountToggle">
+          <span>신부측 계좌번호 보기</span>
+          <i class="fa-solid fa-chevron-down accordion-icon"></i>
+        </button>
+        <div class="accordion-content" id="brideAccountContent"></div>
+      </div>
+    </section>
+
+    <!-- 7. RSVP Section (참석 여부 전달) -->
+    <section class="section rsvp-section" id="rsvp">
+      <div class="section-tag">RSVP</div>
+      <h2 class="section-title">참석 여부 전달하기</h2>
+      <p class="rsvp-subtitle">원활한 예식 진행을 위해 참석 여부를 미리 알려주시면<br>정성껏 모시겠습니다.</p>
+
+      <button class="btn btn-primary rsvp-open-btn" id="openRsvpBtn">
+        <i class="fa-solid fa-envelope-open-text"></i> 참석 여부 전달하기
+      </button>
+    </section>
+
+    <!-- 8. Share & Footer Section -->
+    <footer class="footer-section">
+      <div class="footer-actions">
+        <button class="share-btn kakao" id="kakaoShareBtn">
+          <i class="fa-solid fa-comment"></i> 카카오톡 공유
+        </button>
+        <button class="share-btn link" id="linkCopyBtn">
+          <i class="fa-solid fa-link"></i> 링크 복사
+        </button>
+      </div>
+
+      <div class="footer-copy">
+        <p>문의겸 ♥ 김민정의 결혼을 축하해 주셔서 감사합니다.</p>
+        <p class="copyright">© 2026. Custom Mobile Wedding Invitation.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Fullscreen Gallery Lightbox Modal -->
+  <div class="lightbox-overlay hidden" id="lightboxModal">
+    <button class="lightbox-close" id="lightboxCloseBtn">&times;</button>
+
+    <div class="lightbox-counter" id="lightboxCounter">1 / 5</div>
+
+    <div class="lightbox-content">
+      <button class="lightbox-arrow prev" id="lightboxPrevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+      <img id="lightboxImg" src="" alt="갤러리 확대 사진">
+      <button class="lightbox-arrow next" id="lightboxNextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Thumbnail Strip -->
+    <div class="lightbox-thumbnails" id="lightboxThumbnails"></div>
+  </div>
+
+  <!-- RSVP Modal Form -->
+  <div class="modal-overlay hidden" id="rsvpModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>참석 여부 전달하기</h3>
+        <button class="modal-close" id="closeRsvpBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="rsvpForm" class="rsvp-form">
+          <div class="form-group">
+            <label class="form-label">구분</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="side" value="신랑측" checked> 신랑측
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="side" value="신부측"> 신부측
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rsvpName" class="form-label">성함</label>
+            <input type="text" id="rsvpName" class="form-input" placeholder="성함을 입력해주세요" required>
+          </div>
+
+          <div class="form-group">
+            <label for="rsvpPhone" class="form-label">연락처</label>
+            <input type="tel" id="rsvpPhone" class="form-input" placeholder="010-0000-0000" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">참석 여부</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="attend" value="참석 가능" checked> 참석 가능
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="attend" value="참석 어려움"> 참석 어려움
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">동행 인원 (본인 포함)</label>
+            <select class="form-select" id="rsvpCount">
+              <option value="1명">1명</option>
+              <option value="2명">2명</option>
+              <option value="3명">3명</option>
+              <option value="4명 이상">4명 이상</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">식사 여부</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="dining" value="식사함" checked> 식사함
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="dining" value="식사안함"> 식사 안 함
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="dining" value="미정"> 미정
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn">전달하기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Falling Petals Canvas -->
+  <canvas id="petalsCanvas"></canvas>
+
+  <!-- Floating Quick Navigation Bar -->
+  <nav class="floating-quick-bar hidden" id="floatingQuickNav">
+    <button class="quick-nav-btn" id="quickBtnLocation">
+      <i class="fa-solid fa-map-location-dot"></i>
+      <span>오시는길</span>
+    </button>
+    <button class="quick-nav-btn" id="quickBtnRsvp">
+      <i class="fa-solid fa-envelope-open-text"></i>
+      <span>RSVP</span>
+    </button>
+    <button class="quick-nav-btn" id="quickBtnAccount">
+      <i class="fa-solid fa-credit-card"></i>
+      <span>마음전하기</span>
+    </button>
+  </nav>
+
+  <!-- Configuration & Application Scripts -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
